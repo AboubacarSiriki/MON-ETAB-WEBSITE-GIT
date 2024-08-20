@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <span th:text="${eleve.firstname}"></span>
+     <span th:text="${eleve.lastname}"></span>
+     <h1 th:text="${eleve1}?:'Object null'"></h1>
+
+     <h1 th:text="${eleve1}"></h1>
+     <h1 th:if="${eleve1==null}">
+         Au revoir !
+     </h1>
+
+    <a th:href="@{/Login}">Login</a>
+
+</body>
+</html>
