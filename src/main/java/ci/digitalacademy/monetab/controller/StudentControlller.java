@@ -11,6 +11,17 @@ public class StudentControlller {
 
         @GetMapping
         public String showStudentPage(){
-            return "eleve";
+            return "/student/eleve";
         }
+
+
+        @GetMapping("/Ajouter_Eleve")
+        public String showAjouterEleve(){
+            return "/student/form";
+        }
+
+    @GetMapping("/Modifier_Eleve")
+    public String showModifierEleve(){
+        return "/student/form";
+    }
 }

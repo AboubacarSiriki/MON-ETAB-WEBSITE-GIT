@@ -10,6 +10,6 @@ public class RapportController {
 
     @GetMapping
     public String showRapport(){
-        return "rapport";
+        return "/Rapport/rapport";
     }
 }

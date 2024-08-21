@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Index")
-public class IndexController {
+@RequestMapping
+public class AuthController {
 
     @GetMapping
     public String index(Model model){
@@ -18,6 +18,6 @@ public class IndexController {
         //test Elvis operator
         User user1 = null;
         model.addAttribute("eleve1",user1);
-        return "index";
+        return "/Auth/index";
     }
 }

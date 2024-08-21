@@ -1,48 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un élève</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="Fragments/fragment::head">
+
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Mon Etab</h2>
-        <hr>
-        <ul>
-            <li>
-                <a href="dashboad.html"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a>
-            </li>
-            <li>
-                <a href="eleve.html"><i class="fas fa-user-graduate"></i> Élèves</a>
-            </li>
-            <li class="active">
-                <a href="professeurs.html"><i class="fas fa-chalkboard-teacher"></i> Professeurs</a>
-            </li>
-            <li>
-                <a href="professeurs.html"><i class="fas fa-chalkboard-teacher"></i> Utilisateur</a>
-            </li>
-            <li>
-                <a href="rapport.html"><i class="fas fa-chart-line"></i> Rapport</a>
-            </li>
-        </ul>
-        <hr style="margin-top:270px;">
-        <ul>
-            <li>
-                <a href="index.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-            </li>
-        </ul>
-    </div>
+
+<div class="sidebar"  th:insert="Fragments/fragment::sidebar">
+
+</div>
 
     <div class="content">
         <div class="back-button" style="justify-content: flex-end;" >
-            <a href="eleve.html"><i class="fas fa-arrow-left"></i> Retour</a>
+            <a th:href="@{/Students}"><i class="fas fa-arrow-left"></i> Retour</a>
         </div>
 
         <div class="form-container">
-            <h1>Ajouter d'un professeur</h1>
+            <h1>Ajouter un élève</h1>
 
             <div class="form-group">
                 <label for="nom">Nom</label>
