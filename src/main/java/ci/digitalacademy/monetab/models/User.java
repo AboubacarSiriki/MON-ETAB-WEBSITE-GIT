@@ -11,7 +11,6 @@ import java.time.Instant;
 @AllArgsConstructor
 @Entity
 @Table(name ="utilisateur")
-@ToString
 public class User {
 
     @Id
@@ -21,9 +20,24 @@ public class User {
     @Column(name = "username",unique = true,nullable = false)
     private String speudo;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password",nullable   = false)
     private String password;
 
     @Column(name = "create_date",nullable = false)
     private Instant creationdate;
+
+    @OneToOne
+    @JoinColumn(name = "adresseId")
+    private Adresse adresse;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", speudo='" + speudo + '\'' +
+                ", password='" + password + '\'' +
+                ", creationdate=" + creationdate +
+                ", adresse=" + adresse.getCountry() +
+                '}';
+    }
 }
