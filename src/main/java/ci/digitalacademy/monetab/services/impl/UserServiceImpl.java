@@ -1,8 +1,11 @@
 package ci.digitalacademy.monetab.services.impl;
 
+
 import ci.digitalacademy.monetab.models.User;
 import ci.digitalacademy.monetab.repositories.UserRepository;
 import ci.digitalacademy.monetab.services.UserService;
+import ci.digitalacademy.monetab.services.dto.UserDTO;
+import ci.digitalacademy.monetab.services.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,47 +24,57 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public UserDTO save(UserDTO userDTO) {
+        log.debug("Resquest to save : {}",userDTO);
+        User user = UserMapper.toEntity(userDTO);
+        user= userRepository.save(user);
+
+        return  UserMapper.toDto(user);
     }
 
     @Override
-    public User update(User user) {
+    public UserDTO update(UserDTO userDTO) {
 
-        log.debug("Request to update {}",user);
+        log.debug("Request to update {}",userDTO);
 
        // return userRepository.findById(user.getId())
-        //        .map(existingUser->{
-           //         existingUser.setPassword(user.getPassword());
-              //      return existingUser;
-             //   }).map(existingUser->{
-               //     return save(existingUser);
-             //   }).orElseThrow(()->new IllegalArgumentException());
+//        //        .map(existingUser->{
+//           //         existingUser.setPassword(user.getPassword());
+//              //      return existingUser;
+//             //   }).map(existingUser->{
+//               //     return save(existingUser);
+//             //   }).orElseThrow(()->new IllegalArgumentException());
+//
+//        Optional<User>optionalUser=findOne(user.getId());//recupertion d'un Optional<User>
+//        if(optionalUser.isPresent()){ //verification de l'existance d'un contenu dans le optimal
+//            User userToUpdate = optionalUser.get(); //declaration + affection d'u user à partir du optimal
+//            userToUpdate.setPassword(user.getPassword()); //mise à jour du pseud
+//            userToUpdate.setSpeudo(user.getSpeudo());//mise à jour du pseud
+//
+//            log.info("Request to update user in progress");
+//
+//            return save(userToUpdate); //enregistrement de l'utilisateur
+//        }else {
+//            throw new IllegalArgumentException();
+//        }
 
-        Optional<User>optionalUser=findOne(user.getId());//recupertion d'un Optional<User>
-        if(optionalUser.isPresent()){ //verification de l'existance d'un contenu dans le optimal
-            User userToUpdate = optionalUser.get(); //declaration + affection d'u user à partir du optimal
-            userToUpdate.setPassword(user.getPassword()); //mise à jour du pseud
-            userToUpdate.setSpeudo(user.getSpeudo());//mise à jour du pseud
-
-            log.info("Request to update user in progress");
-
-            return save(userToUpdate); //enregistrement de l'utilisateur
-        }else {
-            throw new IllegalArgumentException();
-        }
+        User user = UserMapper.toEntity(userDTO);
+        user = userRepository.save(user);
+        return UserMapper.toDto(user);
     }
 
     @Override
-    public Optional<User> findOne(Long id) {
-        log.debug("Request to find one user {}",id);
-        return userRepository.findById(id);
+    public Optional<UserDTO> findOne(Long id) {
+        return userRepository.findById(id).map(user -> {
+            return UserMapper.toDto(user);
+        });
     }
 
     @Override
-    public List<User> findAll() {
-        log.debug("Request to find All users");
-        return userRepository.findAll();
+    public List<UserDTO> findAll() {
+        return userRepository.findAll().stream().map(user -> {
+            return UserMapper.toDto(user);
+        }).toList();
     }
 
     @Override

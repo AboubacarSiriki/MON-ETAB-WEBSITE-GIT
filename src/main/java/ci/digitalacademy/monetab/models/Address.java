@@ -10,7 +10,7 @@ import lombok.*;
 @Entity
 @Table(name ="adresse")
 @ToString
-public class Adresse {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

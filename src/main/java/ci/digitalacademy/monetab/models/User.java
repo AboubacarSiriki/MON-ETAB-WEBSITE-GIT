@@ -20,7 +20,7 @@ public class User {
     @Column(name = "username",unique = true,nullable = false)
     private String speudo;
 
-    @Column(name = "password",nullable   = false)
+    @Column(name ="password",nullable = false)
     private String password;
 
     @Column(name = "create_date",nullable = false)
@@ -28,7 +28,7 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "adresseId")
-    private Adresse adresse;
+    private Address adresse;
 
     @Override
     public String toString() {
